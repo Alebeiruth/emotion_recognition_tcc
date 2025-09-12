@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  emotion-recognition-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: emotion_recognition_tcc
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - WANDB_API_KEY=${WANDB_API_KEY:-}
+      - MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI:-}
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./results:/app/results
+      - ./notebooks:/app/notebooks
+      - ~/.cache:/root/.cache  # Cache for models and datasets
+    ports:
+      - "8888:8888"  # Jupyter Lab
+      - "8000:8000"  # FastAPI
+      - "7860:7860"  # Gradio
+      - "5000:5000"  # MLflow
+    command: jupyter
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    
+  emotion-recognition-train:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: emotion_recognition_train
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - WANDB_API_KEY=${WANDB_API_KEY:-}
+    volumes:
+      - .:/app
+      - ./data:/app/data
+      - ./results:/app/results
+    command: train
+    profiles:
+      - training
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  emotion-recognition-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: emotion_recognition_api
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    volumes:
+      - ./results/models:/app/results/models
+    ports:
+      - "8000:8000"
+    command: api
+    profiles:
+      - production
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  mlflow:
+    image: python:3.12-slim
+    container_name: mlflow_tracking
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlruns
+    command: bash -c "pip install mlflow && mlflow ui --host 0.0.0.0 --port 5000"
+    profiles:
+      - mlflow
+
+volumes:
+  data:
+  results:
+  notebooks:
