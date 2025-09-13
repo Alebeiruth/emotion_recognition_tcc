@@ -40,7 +40,6 @@ tensorboard>=2.15.0
 # Data Management
 datasets>=2.14.0
 h5py>=3.9.0
-pytables>=3.8.0
 
 # Utilities
 tqdm>=4.66.0
