@@ -1,0 +1,184 @@
+
+================================================================================
+DETAILED ANALYSIS - IMBALANCED DATA
+================================================================================
+CLASS DISTRIBUTION:
+  • Raiva: 162 samples (5.3%)
+  • Nojo: 160 samples (5.2%)
+  • Medo: 74 samples (2.4%)
+  • Felicidade: 1185 samples (38.6%)
+  • Neutro: 680 samples (22.2%)
+  • Tristeza: 478 samples (15.6%)
+  • Surpresa: 329 samples (10.7%)
+
+IMBALANCE STATISTICS:
+  • Maximum/minimum ratio: 16.01x
+  • Standard deviation: 361.7 samples
+  • Coefficient of variation: 0.825
+  • Majority class: Felicidade (1185 samples)
+  • Minority class: Medo (74 samples)
+
+PERFORMANCE IMPACT:
+  • Correlation samples-F1: 0.974
+    → STRONG positive correlation: more samples = better F1
+  • Best F1: Felicidade (0.588) - 1185.0 samples
+  • Worst F1: Raiva (0.000) - 162.0 samples
+
+MAJOR CONFUSIONS:
+  • Surpresa → Felicidade: 0.836
+  • Surpresa → Felicidade: 0.836
+  • Neutro → Felicidade: 0.679
+  • Tristeza → Felicidade: 0.669
+
+RECOMMENDATIONS:
+  • SEVERE imbalance - consider balancing techniques
+  • Suggestions: SMOTE, class weighting, focal loss
+  • Consider strategies for minority classes
+  • Data augmentation for underrepresented emotions
+================================================================================
+Model not saved (accuracy 0.4068 < 0.7)
+Metrics saved: metrics/efficientvit/efficientvit_metrics_efficientvit_pytorch_emotion_20250929_201929.csv
+
+======================================================================
+EFFICIENTVIT MONITORING REPORT
+======================================================================
+Total training time: 0:28:46
+  • Phase 1 (Feature extraction): 0:10:00
+  • Phase 2 (Fine-tuning): 0:18:33
+Initial memory: 739.42 MB
+Final memory: 6011.96 MB
+Peak memory: 6000.47 MB
+Memory efficiency: 0.123
+Growth factor: 8.12x
+======================================================================
+
+============================================================
+EXPERIMENT COMPLETED SUCCESSFULLY
+============================================================
+Experiment ID: efficientvit_pytorch_emotion_20250929_201929
+Files generated:
+  • Visualizations: plots/efficientvit/efficientvit_comprehensive_analysis_pytorch_efficientvit_pytorch_emotion_20250929_201929.png
+  • Metrics: metrics/efficientvit/efficientvit_metrics_efficientvit_pytorch_emotion_20250929_201929.csv
+  • Best model: best_efficientvit_model.pth
+
+IMBALANCE ANALYSIS SUMMARY:
+  • Test set imbalance ratio: 16.0:1
+  • Macro F1 (unweighted): 0.1482
+  • Weighted F1 (balanced): 0.3127
+  • Performance difference: 0.1645
+  → Model benefits significantly from class weighting
+
+VISION TRANSFORMER ADVANTAGES:
+  • Multi-head attention captures spatial relationships
+  • Hierarchical feature learning with 3 stages
+  • Efficient attention mechanism reduces computational cost
+  • Patch-based processing enables fine-grained analysis
+
+  Starting EfficientViT training...
+Start time: 2025-09-29 20:19:29
+Initial memory: 739.42 MB
+Device: cuda
+--------------------------------------------------
+Experiment ID: efficientvit_pytorch_emotion_20250929_201929
+Loading data...
+Loading preprocessed JPG data for EfficientViT...
+Loading training from: ../data/raw/RAF-DB/DATASET/train
+📁 Subdirectories found: ['Tristeza', 'Raiva', 'Neutro', 'Surpresa', 'Felicidade', 'Medo', 'Nojo']
+  • Raiva: 705 images loaded
+  • Nojo: 717 images loaded
+  • Medo: 281 images loaded
+  • Felicidade: 4772 images loaded
+  • Neutro: 2524 images loaded
+  • Tristeza: 1982 images loaded
+  • Surpresa: 1290 images loaded
+Loading test from: ../data/raw/RAF-DB/DATASET/test
+📁 Subdirectories found: ['Tristeza', 'Raiva', 'Neutro', 'Surpresa', 'Felicidade', 'Medo', 'Nojo']
+  • Raiva: 162 images loaded
+  • Nojo: 160 images loaded
+  • Medo: 74 images loaded
+  • Felicidade: 1185 images loaded
+  • Neutro: 680 images loaded
+  • Tristeza: 478 images loaded
+  • Surpresa: 329 images loaded
+
+✅ Data loaded successfully:
+  • Training: (12271, 224, 224, 3)
+  • Test: (3068, 224, 224, 3)
+Data split:
+  • Train: (8589, 224, 224, 3)
+  • Validation: (3682, 224, 224, 3)
+  • Test: (3068, 224, 224, 3)
+
+Data distribution analysis:
+Training set:
+  • Raiva: 493 samples
+  • Nojo: 502 samples
+  • Medo: 197 samples
+  • Felicidade: 3340 samples
+  • Neutro: 1767 samples
+  • Tristeza: 1387 samples
+  • Surpresa: 903 samples
+Test set:
+  • Raiva: 162 samples
+  • Nojo: 160 samples
+  • Medo: 74 samples
+  • Felicidade: 1185 samples
+  • Neutro: 680 samples
+  • Tristeza: 478 samples
+  • Surpresa: 329 samples
+Test set imbalance ratio: 16.0:1
+
+Creating EfficientViT model...
+EfficientViT created successfully:
+  • Total parameters: 6,731,527
+  • Trainable parameters: 6,731,527
+  • Efficiency: 6.7M parameters
+  • Trainable ratio: 100.0%
+  • Initial GPU memory: 25.7 MB
+
+============================================================
+STARTING EFFICIENTVIT TRAINING
+============================================================
+============================================================
+STARTING EFFICIENTVIT 2-PHASE TRAINING
+============================================================
+PHASE 1: FEATURE EXTRACTION
+----------------------------------------
+Starting phase1 - EfficientViT
+Training 118 parameters in Phase 1
+Epoch 1, Batch 0/268, Loss: 2.0601, Acc: 25.00%
+Epoch 1, Batch 50/268, Loss: 1.7320, Acc: 33.27%
+
+Epoch 36, Batch 250/268, Loss: 1.5148, Acc: 39.89%
+Early stopping at epoch 36
+phase2 completed in: 0:18:33
+Phase 2 - Best val_accuracy: 40.8474
+
+TRAINING COMPLETE:
+  • Total epochs: 61
+  • Best final accuracy: 40.8474
+  • Total time: 0:28:34
+Loaded best model weights for evaluation
+Peak GPU memory: 1679.7 MB
+
+============================================================
+CREATING COMPREHENSIVE ANALYSIS
+============================================================
+Measuring inference performance...
+/home/joao/Desktop/emotion_recognition_tcc/venv/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/home/joao/Desktop/emotion_recognition_tcc/venv/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+/home/joao/Desktop/emotion_recognition_tcc/venv/lib/python3.12/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+
+COMPREHENSIVE RESULTS:
+  • Test Accuracy: 0.4068 (40.68%)
+  • F1-Score (Macro): 0.1482
+  • F1-Score (Weighted): 0.3127
+  • Precision (Macro): 0.1457
+  • Recall (Macro): 0.1772
+  • Inference Speed: 3755.0 samples/second
+  • Total Training Time: 0:28:34
+
+Generating comprehensive visualizations...

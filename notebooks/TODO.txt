@@ -1,3 +1,0 @@
-1 - corrigir os modelos EfficientVit e Resnet50 (deixar no padrão do plot dos dados)
-2 - classe para explorar os dados raw do google driver
-

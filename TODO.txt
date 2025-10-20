@@ -1,0 +1,73 @@
+TODO:
+
+RAF-DB:
+1: preprocessed_raf.py > OKOKOKOKOKOKOK
+1.1
+- mapeia as classes 
+- detecta rosto c/ biblioteca mtcnn
+- alinha rosto
+- recorta rosto
+- redimensiona 224x244
+- escala de cinza
+- salva o dataset chamado preprocessed_raf
+
+VERIFICAR A SAIDA DO preprocessed_expw > gerou os dados pre processados?
+
+1.2 > PODE FAZER NO MSM CODE TANTO RAF C/ EXPW OKOKOKOKOKOK
+- offline: balanceamento oversamplying até a classe maior para 
+    não perder dados + albumentations (oneoff) com peso menor 
+- salva o dataset chamado augmented_raf
+
+2: train_model_preprocessed_raf.py OKOKOKOKOKOKOK
+- usar dados preprocessed_raf
+- aplicar resnet, efficientnet, vit com early stopping
+- usar todas as métricas para avaliar os modelos, f1, accuracy, recall, etc...
+- guarda o resultado para comparar com o augmentado
+
+3: train_model_augmented_raf.py OKOKOKOKOKOKOK
+- usar dados augmented_raf
+- online: data augmentation com biblioteca albumentations (oneoff) com peso maior, não sei em quantas imagens
+    fazer isso em cada época para que o dataset tenha variedade e não salvar os datasets, fazer online
+- aplicar resnet, efficientnet, vit com early stopping
+- usar todas as métricas para avaliar os modelos, f1, accuracy, recall, etc...
+- guarda o resultado para comparar com o preprocessado
+
+4: repetir 1-3 para ExpW OKOKOKOKOKOKOK
+
+5: cross_dataset_raf_expw.py 
+- testar um no treino do outro
+- validar a diferença com métricas
+- guarda o resultado para comparar com os outros dois
+- Com os modelos treinados, usar eles no treino do outro dataset exemplo:
+    raf-preprocessed testar no expw-preprocessed e expw-processed
+    sera feito 12x esse experimento
+
+6: together.py
+- junta treino e teste dos dois datasets
+- Juntar o treino e teste do Raf-preprocessed com Expw-preprocessed
+- Juntar o treino e teste do Raf-processed com Expw-processed
+- Juntar o treino e teste do Raf-augmented com Expw-augmented
+- guarda o resultado para comparar com os outros 2
+_______________________________________________________________________________________________________
+
+DONE:
+
+1 - Resnet50 CORRIGIDO
+2 - corrigiDO os modelos EfficientVit (deixar no padrão do plot dos dados)
+4 - feito raw efficientNetB0 RAF-DB
+5 - feito raw EfficientVit RAF-DB
+6 - feito raw Resnet50 RAF-DB
+7- fazer o passo a passo de como ele seleciona as imagens pois o dataset EXP e bem complexo
+8 - puxar do DRIVE DA LU o rf_db_aligned (https://drive.google.com/drive/folders/11KS5C0rbu_spim0iFqRgJ6KXFUm2o3Zq)
+e LER E CORRIGIR E DAI treinar com o script da LU
+9 - usar dados pre processados somente nos treinos
+
+
+_______________________________________________________________________________________________________
+
+resultados necessários:
+- EDA
+- acurácia e loss em cada época
+- matriz de confusão normalizada
+- um gráfico com todas as métricas de 0 a 1 comparando todas as arquiteturas (talvez por classe), um grafico por dataset
+- análise de performance (tempo e memória)

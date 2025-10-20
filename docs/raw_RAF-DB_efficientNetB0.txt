@@ -1,0 +1,190 @@
+
+================================================================================
+ANÁLISE DETALHADA - DADOS DESBALANCEADOS
+================================================================================
+DISTRIBUIÇÃO DE CLASSES:
+  • Raiva: 162 amostras (5.3%)
+  • Nojo: 160 amostras (5.2%)
+  • Medo: 74 amostras (2.4%)
+  • Felicidade: 1185 amostras (38.6%)
+  • Neutro: 680 amostras (22.2%)
+  • Tristeza: 478 amostras (15.6%)
+  • Surpresa: 329 amostras (10.7%)
+
+ESTATÍSTICAS DE DESBALANCEAMENTO:
+  • Ratio máximo/mínimo: 16.01x
+  • Desvio padrão: 361.7 amostras
+  • Coeficiente de variação: 0.825
+  • Classe majoritária: Felicidade (1185 amostras)
+  • Classe minoritária: Medo (74 amostras)
+
+IMPACTO NA PERFORMANCE:
+  • Correlação amostras-F1: 0.807
+    → FORTE correlação positiva: mais amostras = melhor F1
+  • Melhor F1: Felicidade (0.864) - 1185.0 amostras
+  • Pior F1: Nojo (0.362) - 160.0 amostras
+
+MAIORES CONFUSÕES:
+  • Nojo → Neutro: 0.219
+  • Nojo → Neutro: 0.219
+  • Surpresa → Neutro: 0.158
+  • Tristeza → Neutro: 0.157
+
+RECOMENDAÇÕES:
+  • Desbalanceamento SEVERO - considere técnicas de balanceamento
+  • Sugestões: SMOTE, class weighting, focal loss
+  • Considere estratégias para classes minoritárias
+================================================================================
+Model saved: models/efficientnet/efficientnet_model_efficientnet_pytorch_emotion_20250929_193832.pth
+Metrics saved: metrics/efficientnet/efficientnet_metrics_efficientnet_pytorch_emotion_20250929_193832.csv
+
+======================================================================
+EFFICIENTNET-B0 MONITORING REPORT
+======================================================================
+Total training time: 0:23:58
+  • Phase 1 (Base layers): 0:07:05
+  • Phase 2 (Fine-tuning): 0:16:41
+Initial memory: 2271.64 MB
+Final memory: 6032.04 MB
+Peak memory: 6021.00 MB
+Memory efficiency: 0.377
+Growth factor: 2.65x
+======================================================================
+
+============================================================
+EXPERIMENT COMPLETED SUCCESSFULLY
+============================================================
+Experiment ID: efficientnet_pytorch_emotion_20250929_193832
+Files generated:
+  • Visualizations: plots/efficientnet/efficientnet_comprehensive_analysis_pytorch_efficientnet_pytorch_emotion_20250929_193832.png
+  • Metrics: metrics/efficientnet/efficientnet_metrics_efficientnet_pytorch_emotion_20250929_193832.csv
+  • Model: models/efficientnet/efficientnet_model_efficientnet_pytorch_emotion_20250929_193832.pth
+  • Best model: best_efficientnet_model.pth
+
+IMBALANCE ANALYSIS SUMMARY:
+  • Test set imbalance ratio: 16.0:1
+  • Macro F1 (unweighted): 0.6359
+  • Weighted F1 (balanced): 0.7350
+  • Performance difference: 0.0991
+  → Model benefits significantly from class weighting
+
+
+  Starting EfficientNet-B0 training...
+Start time: 2025-09-29 19:38:32
+Initial memory: 2271.64 MB
+Device: cuda
+--------------------------------------------------
+Experiment ID: efficientnet_pytorch_emotion_20250929_193832
+Loading data...
+Loading preprocessed JPG data for EfficientNet...
+Loading TRAIN from: ../data/raw/RAF-DB/DATASET/train
+📁 Subdirectories found: ['Tristeza', 'Raiva', 'Neutro', 'Surpresa', 'Felicidade', 'Medo', 'Nojo']
+  📸 Raiva: 705 files found
+  ✅ Raiva: 705 images loaded successfully
+  📸 Nojo: 717 files found
+  ✅ Nojo: 717 images loaded successfully
+  📸 Medo: 281 files found
+  ✅ Medo: 281 images loaded successfully
+  📸 Felicidade: 4772 files found
+  ✅ Felicidade: 4772 images loaded successfully
+  📸 Neutro: 2524 files found
+  ✅ Neutro: 2524 images loaded successfully
+  📸 Tristeza: 1982 files found
+  ✅ Tristeza: 1982 images loaded successfully
+  📸 Surpresa: 1290 files found
+  ✅ Surpresa: 1290 images loaded successfully
+Loading TEST from: ../data/raw/RAF-DB/DATASET/test
+📁 Subdirectories found: ['Tristeza', 'Raiva', 'Neutro', 'Surpresa', 'Felicidade', 'Medo', 'Nojo']
+  📸 Raiva: 162 files found
+  ✅ Raiva: 162 images loaded successfully
+  📸 Nojo: 160 files found
+  ✅ Nojo: 160 images loaded successfully
+  📸 Medo: 74 files found
+  ✅ Medo: 74 images loaded successfully
+  📸 Felicidade: 1185 files found
+  ✅ Felicidade: 1185 images loaded successfully
+  📸 Neutro: 680 files found
+  ✅ Neutro: 680 images loaded successfully
+  📸 Tristeza: 478 files found
+  ✅ Tristeza: 478 images loaded successfully
+  📸 Surpresa: 329 files found
+  ✅ Surpresa: 329 images loaded successfully
+
+📊 Data loaded successfully:
+- X_train: (12271, 224, 224, 3)
+- y_train: (12271,)
+- X_test: (3068, 224, 224, 3)
+- y_test: (3068,)
+
+🔍 Final verification:
+- X_train range: [0.000, 255.000]
+- X_test range: [0.000, 255.000]
+- Image format: (224, 224, 3) (should be 224x224x3)
+Data split:
+  • Train: (8589, 224, 224, 3)
+  • Validation: (3682, 224, 224, 3)
+  • Test: (3068, 224, 224, 3)
+
+Data distribution analysis:
+Training set:
+  • Raiva: 493 samples
+  • Nojo: 502 samples
+  • Medo: 197 samples
+  • Felicidade: 3340 samples
+  • Neutro: 1767 samples
+  • Tristeza: 1387 samples
+  • Surpresa: 903 samples
+Test set:
+  • Raiva: 162 samples
+  • Nojo: 160 samples
+  • Medo: 74 samples
+  • Felicidade: 1185 samples
+  • Neutro: 680 samples
+  • Tristeza: 478 samples
+  • Surpresa: 329 samples
+Test set imbalance ratio: 16.0:1
+
+Creating EfficientNet-B0 model...
+EfficientNet-B0 created successfully:
+  • Total parameters: 5,847,683
+  • Trainable parameters: 5,847,683
+  • Efficiency: 5.8M parameters
+  • Trainable ratio: 100.0%
+  • Initial GPU memory: 22.5 MB
+
+============================================================
+STARTING TRAINING
+============================================================
+============================================================
+STARTING EFFICIENTNET 2-PHASE TRAINING
+============================================================
+PHASE 1: FEATURE EXTRACTION
+----------------------------------------
+Starting phase1 - EfficientNet
+Epoch 1, Batch 0/269, Loss: 2.1964, Acc: 18.75%
+Epoch 70, Batch 250/269, Loss: 0.3992, Acc: 86.02%
+phase2 completed in: 0:16:41
+Phase 2 - Best val_accuracy: 72.7594
+
+TRAINING COMPLETE:
+  • Total epochs: 100
+  • Best final accuracy: 72.7594
+  • Total time: 0:23:47
+Loaded best model weights for evaluation
+Peak GPU memory: 415.0 MB
+
+============================================================
+CREATING COMPREHENSIVE ANALYSIS
+============================================================
+Measuring inference performance...
+
+COMPREHENSIVE RESULTS:
+  • Test Accuracy: 0.7324 (73.24%)
+  • F1-Score (Macro): 0.6359
+  • F1-Score (Weighted): 0.7350
+  • Precision (Macro): 0.6544
+  • Recall (Macro): 0.6262
+  • Inference Speed: 2849.3 samples/second
+  • Total Training Time: 0:23:47
+
+Generating comprehensive visualizations...
