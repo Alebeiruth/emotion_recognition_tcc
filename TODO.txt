@@ -1,0 +1,85 @@
+TODO:
+
+RAF-DB:
+1.0.1: preprocessed_raf.py > OKAY FEITO
+1.1
+- mapeia as classes 
+- detecta rosto c/ biblioteca mtcnn
+- alinha rosto
+- recorta rosto
+- redimensiona 224x244
+- escala de cinza
+- salva o dataset chamado preprocessed_raf
+
+
+1.0.2: baalanced_raf_db.ipynb > OKAY FEITO
+1.2
+- offline: balanceamento oversamplying até a classe maior para 
+    não perder dados + albumentations (oneoff) com peso menor 
+- salva o dataset chamado augmented_raf
+
+2: train_model_preprocessed_raf.py > OKAY FEITO
+- usar dados preprocessed_raf
+- rodar com desbalanceado msm (baseline)
+- aplicar resnet, efficientnet, vit com early stopping
+- usar todas as métricas para avaliar os modelos, f1, accuracy, recall, etc...
+- guarda o resultado para comparar com o augmentado
+
+3: train_model_augmented_raf.py OKAY FEITO
+- usar dados augmented_raf
+- online: data augmentation com biblioteca albumentations (oneoff) com peso maior, não sei em quantas imagens
+    fazer isso em cada época para que o dataset tenha variedade e não salvar os datasets, fazer online
+- aplicar resnet, efficientnet, vit com early stopping
+- usar todas as métricas para avaliar os modelos, f1, accuracy, recall, etc...
+- guarda o resultado para comparar com o preprocessado
+
+4: repetir 1-3 para ExpW OKAY FEITO
+
+5: crossdata_processed_raf_for_expw.ipynb OKAY FEITO
+- Pega o modelo pronto do raf (as 3 arquiteturas, os arquivos .pth) e testa no data expw processed
+- Pega o modelo pronto do expw (as 3 arquiteturas .pth) e testa no data raf processed
+- validar a diferença com métricas  f1-score, matrix de confusao e normalizada, recall
+- guarda o resultado para comparar com os outros dois, CSV
+
+6: together.py
+- junta treino e teste dos dois datasets
+- Juntar o treino e teste do Raf-preprocessed com Expw-preprocessed << NÃO EXISTE ESTE DATASET >> tiraram do c* foi? 
+- Juntar o treino e teste do Raf-augmented com Expw-augmented
+- guarda o resultado para comparar com os outros 2
+_______________________________________________________________________________________________________
+
+DONE:
+
+1 - Resnet50 CORRIGIDO
+2 - corrigiDO os modelos EfficientVit (deixar no padrão do plot dos dados)
+4 - feito raw efficientNetB0 RAF-DB
+5 - feito raw EfficientVit RAF-DB
+6 - feito raw Resnet50 RAF-DB
+7- fazer o passo a passo de como ele seleciona as imagens pois o dataset EXP e bem complexo
+8 - puxar do DRIVE DA LU o rf_db_aligned (https://drive.google.com/drive/folders/11KS5C0rbu_spim0iFqRgJ6KXFUm2o3Zq)
+e LER E CORRIGIR E DAI treinar com o script da LU
+9 - usar dados pre processados somente nos treinos
+
+
+_______________________________________________________________________________________________________
+
+resultados necessários:
+- EDA
+- acurácia e loss em cada época
+- matriz de confusão normalizada
+- um gráfico com todas as métricas de 0 a 1 comparando todas as arquiteturas (talvez por classe), um grafico por dataset
+- análise de performance (tempo e memória)
+
+
+---------------------------------------------------------------
+artigo:
+
+- escrever no artigo o qual impreciso o expw é, devido a suas imagens serem muito grandes,
+com mais de uma pessoa, sem label e nem sempre a pessoa descrita no titulo da imagem é a pessaoa em evidencia
+
+- fazer uma tabela comparativa das imagens cruas do expw e raf, mostrando que o expw é muito dificil de ser separado, comparado ao raf
+
+
+
+2 > balanceamento offline (baalanced_raf_db e baalanced_expw)
+3 > balanceamento online (train_model_augmented_raf e train_model_augmented_expw)
