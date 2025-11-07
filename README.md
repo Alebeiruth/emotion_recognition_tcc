@@ -2,7 +2,23 @@
 
 Um projeto abrangente de TCC focado no reconhecimento de emoções faciais usando técnicas modernas de Deep Learning. Este projeto implementa e compara diferentes arquiteturas de redes neurais para classificação de emoções, incluindo análises de erro detalhadas, estudos de ablação e estratégias avançadas de data augmentation.
 
-##  Índice
+## Artefatos Completos do Projeto
+
+Todos os artefatos do projeto, incluindo dados, modelos treinados, códigos-fonte, logs, métricas, figuras e tabelas auxiliares, estão organizados e disponíveis no Google Drive:
+
+**[Acesse a Pasta Completa do Projeto](https://drive.google.com/drive/u/0/folders/1SEzS6lTfbRv7G4o6PugZhtznDkiH8UDP)**
+
+Esta pasta contempla todos os requisitos de artefatos, com:
+- **Dados**: Datasets organizados (RAF-DB, EXPW)
+- **Modelos**: Checkpoints e arquivos `.pth` dos modelos treinados
+- **Logs**: Históricos de treinamento e métricas detalhadas
+- **Resultados**: Gráficos, matrizes de confusão e análises
+- **Documentação**: Relatórios complementares e tabelas auxiliares
+- **Código-fonte**: Scripts e notebooks completos
+
+Todos os arquivos estão claramente identificados com referências explícitas aos diretórios correspondentes no material submetido.
+
+## Índice
 
 - [Características](#características)
 - [Arquiteturas Implementadas](#arquiteturas-implementadas)
@@ -18,32 +34,32 @@ Um projeto abrangente de TCC focado no reconhecimento de emoções faciais usand
 - [API de Inferência](#api-de-inferência)
 - [Contribuição](#contribuição)
 
-##  Características
+## Características
 
-###  Modelos de Deep Learning
+### Modelos de Deep Learning
 - **EfficientNet-B0** com fine-tuning em duas fases
 - **ResNet-50** com transfer learning
 - **EfficientViT** para eficiência computacional
 
 
-###  Análises Avançadas
+### Análises Avançadas
 - Análise de erro detalhada com identificação de vieses
 - Estudos de ablação para componentes dos modelos
 - Análise de drift entre datasets
 
 
-###  Ferramentas e Utilitários
+### Ferramentas e Utilitários
 - Monitoramento completo de recursos (CPU, GPU, memória)
 - Data augmentation robusta e adaptativa
 - Containerização com Docker
 - Notebooks Jupyter organizados para cada experimento
 
-###  Métricas e Visualizações
+### Métricas e Visualizações
 - Matrizes de confusão
 - Análise de complexidade computacional
 - Exportação automática de resultados em CSV
 
-##  Arquiteturas Implementadas
+## Arquiteturas Implementadas
 
 | Modelo | Parâmetros | Complexidade | Características |
 |--------|------------|--------------|----------------|
@@ -51,7 +67,7 @@ Um projeto abrangente de TCC focado no reconhecimento de emoções faciais usand
 | **ResNet-50** | ~25.6M | Média | Skip connections, Proven architecture |
 | **EfficientViT** | ~3.2M | Alta | Vision Transformer, Efficient attention |
 
-##  Datasets
+## Datasets
 
 ### Principais Datasets
 1. **RAF-DB** - 29,672 imagens de alta qualidade com anotações
